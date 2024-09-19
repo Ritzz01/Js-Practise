@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style></style>
+  </head>
+  <body>
+    <button id="Male">Male</button>
+    <button id="Female">Female</button>
+    <button id="All">All</button>
+
+    <!-- 1st row click toh uska details show krna hai div me -->
+    <table border="1" style="border-collapse: collapse; width: 100%">
+      <thead>
+        <tr bgcolor="yellow">
+          <th>Id</th>
+          <th>Name</th>
+          <th>Gender</th>
+          <th>Address</th>
+        </tr>
+      </thead>
+
+      <tbody id="display"></tbody>
+    </table>
+
+    <div id="details"></div>
+
+    <script>
+      let student = [
+        {
+          id: 1,
+          name: "A",
+          age: 25,
+          gender: "Male",
+          email: "a@gmail.com",
+          address: "Bangalore",
+        },
+        {
+          id: 2,
+          name: "B",
+          age: 25,
+          gender: "Female",
+          email: "b@gmail.com",
+          address: "Pune",
+        },
+        {
+          id: 3,
+          name: "C",
+          age: 25,
+          gender: "Male",
+          email: "c@gmail.com",
+          address: "Mumbai",
+        },
+        {
+          id: 4,
+          name: "D",
+          age: 25,
+          gender: "Male",
+          email: "d@gmail.com",
+          address: "Bangalore",
+        },
+        {
+          id: 5,
+          name: "E",
+          age: 25,
+          gender: "Female",
+          email: "e@gmail.com",
+          address: "Pune",
+        },
+        {
+          id: 6,
+          name: "F",
+          age: 25,
+          gender: "Male",
+          email: "f@gmail.com",
+          address: "Mumbai",
+        },
+        {
+          id: 7,
+          name: "G",
+          age: 25,
+          gender: "Male",
+          email: "g@gmail.com",
+          address: "Bangalore",
+        },
+        {
+          id: 8,
+          name: "H",
+          age: 25,
+          gender: "Female",
+          email: "h@gmail.com",
+          address: "Pune",
+        },
+        {
+          id: 9,
+          name: "I",
+          age: 25,
+          gender: "Male",
+          email: "i@gmail.com",
+          address: "Mumbai",
+        },
+      ];
+
+      let display = document.getElementById("display");
+
+      function studentDetail(arr) {
+        let res = "";
+        arr.forEach((e) => {
+          res += `<tr neww="${e.id}">
+                  <td>${e.id}</td>
+                   <td>${e.name}</td>
+                   <td>${e.gender}</td>
+                   <td>${e.address}</td>
+
+              </tr>`;
+        });
+
+        display.innerHTML = res;
+
+        document.querySelectorAll("tr[neww]").forEach((e) => {
+          e.addEventListener("click", () => {
+            let studentId = e.getAttribute("neww");
+            let sid = arr.find((s) => s.id == studentId);
+            rowDetails(sid);
+          });
+        });
+      }
+
+      //studentDetail(student);
+
+      let male = document.getElementById("Male");
+      let female = document.getElementById("Female");
+      let all = document.getElementById("All");
+
+      male.addEventListener("click", () => {
+        let males = student.filter((e) => {
+          if (e.gender == "Male") {
+            return e;
+          }
+        });
+        console.log(males);
+        studentDetail(males);
+      });
+
+      female.addEventListener("click", () => {
+        let females = student.filter((e) => {
+          if (e.gender == "Female") {
+            return e;
+          }
+        });
+        console.log(females);
+        studentDetail(females);
+      });
+
+      all.addEventListener("click", () => {
+        studentDetail(student);
+      });
+
+      let details = document.getElementById("details");
+
+      function rowDetails(student) {
+        details.innerHTML = `
+          <h3>Student Details:</h3>
+          <p><strong>Id:</strong> ${student.id}</p>
+          <p><strong>Name:</strong> ${student.name}</p>
+          <p><strong>Gender:</strong> ${student.gender}</p>
+          <p><strong>Email:</strong> ${student.email}</p>
+          <p><strong>Address:</strong> ${student.address}</p>
+        `;
+      }
+    </script>
+  </body>
+</html>
