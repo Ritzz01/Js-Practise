@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <style>
+      img {
+        height: 80px;
+        border-radius: 50px;
+        position: relative;
+      }
+      body {
+        background-color: slateblue;
+      }
+    </style>
+  </head>
+  <body>
+
+ 
+    <img id="ball" src="../practise/ball.png" />
+
+    <button id="Up"><i class="bi bi-arrow-up"></i></button>
+    <button id="Down"><i class="bi bi-arrow-down"></i></button>
+    <button id="Left"><i class="bi bi-arrow-left"></i></button>
+    <button id="Right"><i class="bi bi-arrow-right"></i></button>
+  </body>
+
+  <script>
+    let ball = document.getElementById("ball");
+    let up = document.getElementById("Up");
+    let down = document.getElementById("Down");
+    let left = document.getElementById("Left");
+    let right = document.getElementById("Right");
+
+    let x = 0;
+    let y = 0;
+    function move() {
+      console.log(x, y);
+      ball.style.transform = `translate(${x}px, ${y}px)`;
+    }
+
+    up.addEventListener("click", () => {
+      y -= 20;
+      move();
+    });
+
+    down.addEventListener("click", () => {
+      y += 20;
+      move();
+    });
+
+    left.addEventListener("click", () => {
+      x -= 20;
+      move();
+    });
+
+    right.addEventListener("click", () => {
+      x += 20;
+      move();
+    });
+
+  </script>
+</html>
