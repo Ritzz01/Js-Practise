@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form>
+      <fieldset>
+        <legend align="center">Student Details</legend>
+        <table>
+          <tr>
+            <td>
+              <label>First Name</label>
+              <input
+                id="Fname"
+                type="text"
+                placeholder="Enter Your first name"
+              />
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <label>Last Name</label>
+              <input
+                id="Lname"
+                type="text"
+                placeholder="Enter Your last name"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label>Mobile No</label>
+              <input
+                id="Mobile"
+                type="number"
+                placeholder="Enter Your number"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label>Address </label>
+              <input
+                id="Address"
+                type="text"
+                placeholder="Enter Your address"
+              />
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <label>Gender</label>
+              <input type="radio" name="Gender" value="Male" id="Male" /> Male
+              <input type="radio" name="Gender" value="Female" id="Female" />
+              Female
+            </td>
+          </tr>
+        </table>
+        <button id="Submit">Submit</button>
+      </fieldset>
+    </form>
+
+    <div class="data">
+      <table width="500px" border="1">
+        <thead>
+          <th>FName</th>
+          <th>LName</th>
+          <th>Mobile</th>
+          <th>Address</th>
+          <th>Gender</th>
+        </thead>
+
+        <tbody id="display"></tbody>
+      </table>
+    </div>
+
+    <script>
+      let Fname = document.getElementById("Fname");
+      let Lname = document.getElementById("Lname");
+      let Mobile = document.getElementById("Mobile");
+      let Address = document.getElementById("Address");
+      let Gender = document.getElementsByName("Gender");
+      let Submit = document.getElementById("Submit");
+      let display = document.getElementById("display");
+
+      function gender() {
+        for (let i of Gender) {
+          if (i.checked) {
+            return i.value;
+          }
+        }
+      }
+
+      function store() {
+        let data = {
+          firstName: Fname.value,
+          lastName: Lname.value,
+          mobile: Mobile.value,
+          address: Address.value,
+          gender: gender(),
+        };
+
+        let alldata = JSON.stringify(data);
+        console.log(alldata);
+        return alldata;
+      }
+
+      Submit.addEventListener("click", () => {
+        // e.preventDefault();
+        let a = store();
+        localStorage.setItem("qty", a);
+        deta();
+      });
+
+      function deta() {
+        let a = localStorage.getItem("qty");
+        let b = JSON.parse(a);
+        console.log(b);
+
+        let res = "";
+
+        res = `<tr>
+           
+          <td>${b.firstName}</td>
+          <td>${b.lastName}</td>
+          <td>${b.mobile}</td>
+          <td>${b.address}</td>
+          <td>${b.gender}</td>
+        </tr>`;
+
+        display.innerHTML += res;
+      }
+      deta();
+    </script>
+  </body>
+</html>
