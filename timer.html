@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <style>
+      body {
+        background-color: black;
+      }
+      div,
+      text {
+        height: 100px;
+        width: 100%;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="display"></div>
+    <button id="play"><i class="bi bi-play"></i></button>
+    <button id="timer"><i class="bi bi-stopwatch"></i></button>
+
+    <div id="text"></div>
+    <!-- //  <button id="pause" class="hidden"><i class="bi bi-pause-btn"></i></button> -->
+
+    <script>
+      let display = document.getElementById("display");
+      let play = document.getElementById("play");
+      let stop = document.getElementById("timer");
+      let text = document.getElementById("text");
+
+      let interval;
+      let hr = 0;
+      let min = 0;
+      let sec = 0;
+      play.addEventListener("click", () => {
+        if (!interval) {
+          time();
+          play.innerHTML = `<i class="bi bi-pause-btn"></i>`;
+        } else {
+          clearInterval(interval);
+          interval = 0;
+          play.innerHTML = `<i class="bi bi-play"></i>`;
+        }
+      });
+      stop.addEventListener("click", () => {
+        let res = "";
+        res = `${String(hr).padStart(2, "0")}:${String(min).padStart(
+          2,
+          "0"
+        )}:${String(sec).padStart(2, "0")}`;
+        text.innerHTML += res + "<br>";
+      });
+
+      function time() {
+        interval = setInterval(() => {
+          sec++;
+
+          if (sec >= 60) {
+            sec = 0;
+            min++;
+          }
+
+          if (min >= 60) {
+            min = 0;
+            hr++;
+          }
+
+          display.innerHTML = `${hr}:${min}:${sec}`;
+          console.log(`${hr}:${min}:${sec}`);
+        }, 100);
+      }
+    </script>
+  </body>
+</html>
