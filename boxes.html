@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      .container {
+        display: flex;
+        justify-content: space-around;
+      }
+      .box {
+        height: 80px;
+        width: 80px;
+        margin-top: 10px;
+        border: 1px solid #333;
+      }
+    </style>
+    <title>12 Boxes in a Row</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
+
+    <div class="container">
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
+    <div class="container">
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
+    <div class="container">
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
+    <div class="container">
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
+
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+    <button id="reset">Reset</button>
+
+    <script>
+      let start = document.getElementById("start");
+      let box = document.getElementsByClassName("box");
+      let reset = document.getElementById("reset");
+      let stop = document.getElementById("stop");
+
+      let interval;
+
+      let i = 0;
+
+      start.addEventListener("click", () => {
+        time();
+      });
+
+      stop.addEventListener("click", () => {
+        clearInterval(interval);
+      });
+
+      reset.addEventListener("click", () => {
+        clearInterval(interval);
+        time();
+      });
+
+      function time() {
+        interval = setInterval(() => {
+          let red = Math.trunc(Math.random() * 255);
+          let blue = Math.trunc(Math.random() * 255);
+          let green = Math.trunc(Math.random() * 255);
+          box[i].style.backgroundColor = `rgb(${red},${green},${blue})`;
+          i++;
+        }, 1000);
+      }
+    </script>
+  </body>
+</html>
